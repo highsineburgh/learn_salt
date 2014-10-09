@@ -10,8 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master.vm.box = "ubuntu/trusty64"
     master.vm.hostname = "salt"
     master.vm.network  "private_network",  ip: "192.168.45.45"
-    master.vm.synced_folder "master/states", "/srv/salt"
-    master.vm.synced_folder "master/pillar", "/srv/pillar"
+    master.vm.synced_folder "master/states", "/srv/salt", create: true
+    master.vm.synced_folder "master/pillar", "/srv/pillar", create: true
   end
 
   config.vm.define "minion1" do |minion1|
