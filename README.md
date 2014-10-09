@@ -1,7 +1,7 @@
 learn_salt
 ==========
 
-The source files corresponding to my [blog](http://www.highsineburgh) series experimenting
+The source files corresponding to my [blog](http://www.highsineburgh.com) series experimenting
 with [SaltStack](http://www.saltstack.com/).
 
 Tags have been added corresponding to the state of progress at the time a blog post was 
