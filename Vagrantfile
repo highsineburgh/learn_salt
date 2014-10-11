@@ -12,17 +12,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master.vm.network  "private_network",  ip: "192.168.45.45"
     master.vm.synced_folder "master/states", "/srv/salt", create: true
     master.vm.synced_folder "master/pillar", "/srv/pillar", create: true
+
+    master.vm.provision :salt do |salt|
+      salt.install_master = true
+      salt.no_minion = true
+    end
   end
 
   config.vm.define "minion1" do |minion1|
     minion1.vm.box = "ubuntu/trusty64"
     minion1.vm.hostname = "webserver"
     minion1.vm.network  "private_network", ip: "192.168.45.50"
+    minion1.vm.provision :salt do |salt|
+      salt.minion_config = 'minion'
+    end
   end
 
   config.vm.define "minion2" do |minion2|
     minion2.vm.box = "chef/debian-7.4"
     minion2.vm.hostname = "elasticsearch"
     minion2.vm.network  "private_network", ip: "192.168.45.51"
+    minion2.vm.provision :salt do |salt|
+      salt.minion_config = 'minion'
+    end
   end
 end
